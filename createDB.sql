@@ -44,4 +44,5 @@ CREATE TABLE IF NOT EXISTS product_entries (
 -- Show created tables
 SHOW TABLES;
 
-SELECT * FROM product_submissions
+SELECT * FROM product_submissions;
+SELECT * FROM product_entries;
