@@ -30,7 +30,7 @@
                     <div class="field">
                         <label>
                             Product
-                            <input type="text" name="product_name[]" placeholder="e.g. Milk 1L" maxlength="200"
+                            <input type="text" name="product_name[]" placeholder="e.g. Milk 1L" maxlength="150"
                                 required>
                         </label>
                     </div>
@@ -60,6 +60,8 @@
                 <small>JPEG, PNG or WebP · Max 5 MB</small>
 
                 <input type="file" id="image" name="product_image" accept="image/jpeg,image/png,image/webp">
+
+                <button type="button" id="removeImageButton">Remove Image</button>
             </div>
 
             <label for="image_type">Image Type</label>

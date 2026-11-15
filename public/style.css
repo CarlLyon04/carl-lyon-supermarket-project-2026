@@ -59,7 +59,8 @@ label {
 }
 
 /* Inputs */
-input, select {
+input,
+select {
     width: 100%;
     padding: 12px;
     margin-bottom: 18px;
@@ -74,7 +75,8 @@ input::placeholder {
     color: var(--muted);
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
     outline: none;
     border-color: var(--accent);
     box-shadow: 0 0 0 2px #EC489933;
@@ -192,6 +194,39 @@ button[type="submit"] {
 
 #submissionForm [role="status"]:empty {
     display: none;
+}
+
+/* Remove Product Button */
+.removeProduct {
+    grid-column: 1 / -1;
+    background: var(--border);
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.removeProduct:hover {
+    background: var(--accent);
+    color: var(--background);
+}
+
+/* Clear Image Button */
+#clearImage {
+    width: auto;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: var(--border);
+    color: var(--text);
+}
+
+#clearImage:hover {
+    background: var(--accent);
+    color: var(--background);
+}
+
+/* Disabled Submit Button */
+button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Mobile */

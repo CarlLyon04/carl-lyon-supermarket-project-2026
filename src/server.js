@@ -26,7 +26,7 @@ app.post("/api/submissions", async (req, res) => {
 
     // Validate market_name
     if (typeof market_name !== "string" || !market_name.trim() || market_name.trim().length > 150) {
-        return res.status(400).json({ error: 'A valid market_name is required' });
+        return res.status(400).json({ error: 'Market Name is required and must be at most 150 characters' });
     }
 
     // Validate items array
@@ -36,7 +36,7 @@ app.post("/api/submissions", async (req, res) => {
 
     // Validate each item in the items array
     for (const item of items) {
-        if (!item || typeof item.product_name !== "string" || !item.product_name.trim() || item.product_name.length > 200 || item.price == null || String(item.price).trim() === "" || !Number.isFinite(Number(item.price)) || Number(item.price) < 0 || Number(item.price) > 9999 || Number(Number(item.price).toFixed(2)) !== Number(item.price)) {
+        if (!item || typeof item.product_name !== "string" || !item.product_name.trim() || item.product_name.length > 150 || item.price == null || String(item.price).trim() === "" || !Number.isFinite(Number(item.price)) || Number(item.price) < 0 || Number(item.price) > 9999 || Number(Number(item.price).toFixed(2)) !== Number(item.price)) {
             return res.status(400).json({ error: 'Each item must have a valid product_name and price' });
         }
     }
@@ -54,9 +54,9 @@ app.post("/api/submissions", async (req, res) => {
 
         // Split the image string into the header and the base64 data
         const imageParts = image.split(',');
-    
+
         // Validate that the image has a proper header and base64 data
-        if (imageParts.length !== 2 || !["data:image/png;base64", "data:image/jpeg;base64"].includes(imageParts[0])) {
+        if (imageParts.length !== 2 || !["data:image/png;base64", "data:image/jpeg;base64", "data:image/webp;base64"].includes(imageParts[0])) {
             return res.status(400).json({ error: "Invalid image format" });
         }
 

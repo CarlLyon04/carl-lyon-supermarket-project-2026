@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS product_images (
 CREATE TABLE IF NOT EXISTS product_entries (
     item_id INT AUTO_INCREMENT PRIMARY KEY,
     submission_id INT NOT NULL,
-    product_name VARCHAR(200) NOT NULL,
+    product_name VARCHAR(150) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     image_id INT NULL,
 
@@ -41,10 +41,25 @@ CREATE TABLE IF NOT EXISTS product_entries (
     CHECK (price >= 0)
 );
 
--- Show created tables
-SHOW TABLES;
+DESCRIBE product_submissions;
+DESCRIBE product_entries;
+DESCRIBE product_images;
 
 SELECT * FROM product_submissions;
 SELECT * FROM product_entries;
+SELECT image_id, submission_id, image_classification
+FROM product_images;
 
-SELECT * FROM product_images;
+SELECT
+    s.submission_id AS submission_id,
+    s.market_name,
+    p.product_name,
+    p.price,
+    p.image_id,
+    i.image_classification
+FROM product_submissions s
+JOIN product_entries p
+    ON s.submission_id = p.submission_id
+LEFT JOIN product_images i
+    ON p.image_id = i.image_id
+ORDER BY s.submission_id DESC;
