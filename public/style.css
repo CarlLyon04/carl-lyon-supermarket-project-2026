@@ -1,0 +1,168 @@
+/* Colour Palette */
+:root {
+    --background: #121212;
+    --card: #1F2937;
+    --border: #334155;
+    --muted: #64748B;
+    --text: #F1F5F9;
+    --accent: #EC4899;
+}
+
+/* General Styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+/* Main Form Container */
+main {
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 32px;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+/* Headings */
+h1 {
+    margin: 0 0 10px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+h2 {
+    margin: 28px 0 16px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 28px;
+    color: var(--text);
+    opacity: 0.7;
+    font-size: 14px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Input Fields */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    background-color: var(--background);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+}
+
+input::placeholder {
+    color: var(--muted);
+}
+
+/* Input Focus */
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px #EC489933;
+}
+
+/* Product Rows */
+.product-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+}
+
+/* Image Input */
+input[type="file"] {
+    padding: 10px;
+    font-size: 13px;
+}
+
+input[type="file"]::file-selector-button {
+    padding: 8px 12px;
+    margin-right: 12px;
+    background-color: var(--border);
+    color: var(--text);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 13px;
+    background-color: var(--accent);
+    color: var(--background);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+/* Add Product Button */
+#addProduct {
+    background-color: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+#addProduct:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Submit Button */
+button[type="submit"] {
+    margin-top: 20px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+    }
+
+    main {
+        margin: 16px auto;
+        padding: 22px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .product-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
