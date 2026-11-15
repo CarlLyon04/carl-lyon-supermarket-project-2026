@@ -14,3 +14,12 @@ const db = mysql.createPool({
 
 // Export the database connection pool for use in other modules
 module.exports = db;
+
+/*
+Code references:
+- https://www.npmjs.com/package/mysql2
+
+- https://sidorares.github.io/node-mysql2/docs/examples/connections/create-pool
+
+- https://www.npmjs.com/package/dotenv
+*/

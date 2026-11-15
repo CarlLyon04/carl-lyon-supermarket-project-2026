@@ -63,3 +63,14 @@ JOIN product_entries p
 LEFT JOIN product_images i
     ON p.image_id = i.image_id
 ORDER BY s.submission_id DESC;
+
+/*
+Code references:
+- https://dev.mysql.com/doc/refman/8.4/en/create-table.html
+
+- https://dev.mysql.com/doc/refman/8.4/en/create-table-foreign-keys.html
+
+- https://dev.mysql.com/doc/refman/8.4/en/fixed-point-types.html
+
+- https://dev.mysql.com/doc/refman/8.4/en/blob.html
+*/

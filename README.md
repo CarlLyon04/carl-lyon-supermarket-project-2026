@@ -90,7 +90,7 @@ DB_NAME=supermarket_app
 PORT=3000
 ```
 
-Replace the sample values with your local MySQL credentials and actual database name. Keep `.env` out of version control; use a dedicated database user instead of `root` for deployment.
+Replace the sample values with your local MySQL credentials and actual database name. Keep `.env` out of version control and use a dedicated database user instead of `root` for deployment.
 
 ### 4. Start the application
 
@@ -107,10 +107,7 @@ Open **http://localhost:3000** in your browser.
 3. Optionally choose/capture an image, select **Shelf**, **Product**, or **Receipt**, or clear the selected image.
 4. Click **Submit Prices**. A successful request saves the submission and resets the form.
 
-At present, one optional image is linked to all product entries in that submission.
-
 ## Notes
 
 - The browser sends an image as a Base64 data URL; the backend converts it to binary data and stores it in MySQL. No `uploads/` directory or Multer dependency is required.
 - The project currently runs locally. A hosted deployment requires a reachable MySQL database and appropriate environment configuration.
-- Before public deployment, strengthen image-content validation, abuse protection, and database access controls.

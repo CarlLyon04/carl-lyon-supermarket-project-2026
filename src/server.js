@@ -142,3 +142,18 @@ app.post("/api/submissions", async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+/*
+Code references:
+- https://expressjs.com/en/5x/guide/routing/
+
+- https://expressjs.com/en/5x/api/express/
+
+- https://expressjs.com/en/5x/starter/static-files/
+
+- https://nodejs.org/api/buffer.html
+
+- https://sidorares.github.io/node-mysql2/docs/examples/queries/prepared-statements
+
+- https://dev.mysql.com/doc/refman/8.4/en/commit.html
+*/

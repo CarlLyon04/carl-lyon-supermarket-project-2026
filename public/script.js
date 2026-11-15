@@ -129,3 +129,16 @@ form.addEventListener('submit', async (event) => {
         submitButton.textContent = "Submit Prices";
     }
 });
+
+/*
+Code references:
+- https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode
+
+- https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+
+- https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+
+- https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
+
+- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+*/
