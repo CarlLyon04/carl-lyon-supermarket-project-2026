@@ -46,3 +46,5 @@ SHOW TABLES;
 
 SELECT * FROM product_submissions;
 SELECT * FROM product_entries;
+
+SELECT * FROM product_images;

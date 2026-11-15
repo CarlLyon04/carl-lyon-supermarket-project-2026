@@ -17,7 +17,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json({ limit: '10mb' }));
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // API endpoint to handle product submissions
 app.post("/api/submissions", async (req, res) => {
@@ -45,26 +45,31 @@ app.post("/api/submissions", async (req, res) => {
     let imageBuffer = null
     let dataType = null
 
-    // Validate and process the image if it is provided
+    // If an image is provided, validate and process it
     if (image != null) {
-        if(typeof image !== "string") {
-            return res.status(400).json({ error: 'Invalid image' });
+        // Validate that image_type is provided and is one of the allowed types
+        if (typeof image !== "string" || !["shelf", "product", "receipt"].includes(image_type)) {
+            return res.status(400).json({ error: "Invalid image type" });
         }
-    }
 
-    // Split the image into header and data parts
-    const imageParts = image.split(',');
-    const header = imageParts[0];
+        // Split the image string into the header and the base64 data
+        const imageParts = image.split(',');
+    
+        // Validate that the image has a proper header and base64 data
+        if (imageParts.length !== 2 || !["data:image/png;base64", "data:image/jpeg;base64"].includes(imageParts[0])) {
+            return res.status(400).json({ error: "Invalid image format" });
+        }
 
-    // Extract the MIME type from the header
-    dataType = header.startsWith("data:") ? header.slice(5, header.indexOf(";")[0]) : null;
+        // Extract the MIME type from the header
+        dataType = imageParts[0].split(":")[1].split(";")[0];
 
-    // Convert the base64 image data to a buffer
-    imageBuffer = Buffer.from(imageParts[1], 'base64');
+        // Convert the base64 image data to a buffer
+        imageBuffer = Buffer.from(imageParts[1], 'base64');
 
-    // Validate the image buffer and its size, and ensure it matches the original base64 data
-    if(!imageBuffer || imageBuffer.length > 5 * 1024 * 1024 || imageBuffer.toString("base64") !== imageParts[1]) {
-        return res.status(400).json({ error: 'Invalid image data' });
+        // Validate the image buffer and its size, and ensure it matches the original base64 data
+        if (!imageBuffer || imageBuffer.length > 5 * 1024 * 1024 || imageBuffer.toString("base64") !== imageParts[1]) {
+            return res.status(400).json({ error: 'Invalid image data' });
+        }
     }
 
     // create a database connection and start a transaction
@@ -90,13 +95,13 @@ app.post("/api/submissions", async (req, res) => {
         let image_id = null;
 
         // Insert the image into the product_images table if it exists
-        if(imageBuffer){
-            const [image] = await conn.execute(
+        if (imageBuffer) {
+            const [imageResult] = await conn.execute(
                 "INSERT INTO product_images (submission_id, image_data, data_type, image_classification) VALUES (?, ?, ?, ?)",
-                [submission_id, imageBuffer, dataType, image_classification]
+                [submission_id, imageBuffer, dataType, image_type]
             );
-            
-            image_id = image.insertId;
+
+            image_id = imageResult.insertId;
         }
 
         // insert each item into the product_entries table
