@@ -8,7 +8,7 @@
     --accent: #EC4899;
 }
 
-/* General Styling */
+/* General */
 * {
     box-sizing: border-box;
 }
@@ -18,38 +18,36 @@ body {
     padding: 24px;
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background-color: var(--background);
+    background: var(--background);
     color: var(--text);
 }
 
-/* Main Form Container */
+/* Main Container */
 main {
     max-width: 550px;
     margin: 40px auto;
     padding: 32px;
-    background-color: var(--card);
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
 }
 
-/* Headings */
+/* Typography */
 h1 {
     margin: 0 0 10px;
     font-size: 26px;
-    font-weight: 700;
 }
 
 h2 {
     margin: 28px 0 16px;
     font-size: 18px;
-    font-weight: 600;
 }
 
 p {
-    margin-bottom: 28px;
+    margin: 0 0 28px;
+    font-size: 14px;
     color: var(--text);
     opacity: 0.7;
-    font-size: 14px;
 }
 
 /* Labels */
@@ -60,12 +58,12 @@ label {
     font-weight: 500;
 }
 
-/* Input Fields */
+/* Inputs */
 input, select {
     width: 100%;
     padding: 12px;
     margin-bottom: 18px;
-    background-color: var(--background);
+    background: var(--background);
     color: var(--text);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -76,7 +74,6 @@ input::placeholder {
     color: var(--muted);
 }
 
-/* Input Focus */
 input:focus, select:focus {
     outline: none;
     border-color: var(--accent);
@@ -90,16 +87,51 @@ input:focus, select:focus {
     gap: 12px;
 }
 
-/* Image Input */
-input[type="file"] {
-    padding: 10px;
-    font-size: 13px;
+.product-row label {
+    margin-bottom: 0;
 }
 
-input[type="file"]::file-selector-button {
-    padding: 8px 12px;
+.product-row input {
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+/* Image Upload */
+.upload-box {
+    padding: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    background: var(--background);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+}
+
+.upload-icon {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.upload-box label {
+    cursor: pointer;
+}
+
+.upload-box small {
+    display: block;
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+#image {
+    margin: 0;
+    font-size: 12px;
+}
+
+#image::file-selector-button {
+    padding: 9px 12px;
     margin-right: 12px;
-    background-color: var(--border);
+    background: var(--border);
     color: var(--text);
     border: none;
     border-radius: 6px;
@@ -110,8 +142,6 @@ input[type="file"]::file-selector-button {
 button {
     width: 100%;
     padding: 13px;
-    background-color: var(--accent);
-    color: var(--background);
     border: none;
     border-radius: 8px;
     font-size: 14px;
@@ -125,28 +155,46 @@ button:hover {
 }
 
 button:focus-visible {
-    outline: 2px solid var(--text);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
 }
 
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Add Product Button */
-#addProduct {
-    background-color: transparent;
+#addProductButton {
+    background: transparent;
     color: var(--text);
     border: 1px solid var(--border);
 }
 
-#addProduct:hover {
-    border-color: var(--accent);
+#addProductButton:hover {
     color: var(--accent);
+    border-color: var(--accent);
 }
 
 /* Submit Button */
 button[type="submit"] {
     margin-top: 20px;
+    background: var(--accent);
+    color: var(--background);
 }
 
-/* Mobile Responsiveness */
+/* Form Status */
+#submissionForm [role="status"] {
+    margin: 16px 0 0;
+    font-size: 14px;
+    opacity: 1;
+}
+
+#submissionForm [role="status"]:empty {
+    display: none;
+}
+
+/* Mobile */
 @media (max-width: 480px) {
     body {
         padding: 16px;
